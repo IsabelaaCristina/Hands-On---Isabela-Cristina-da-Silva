@@ -1,0 +1,512 @@
+                                 ------------------------------------------------
+                                                    HANDS ON 00
+                                  ------------------------------------------------
+
+1- 
+
+import java.util.ArrayList;
+public class JavaApplication20 {
+
+    public static void main(String[] args) {
+        ArrayList<String> produtos = new ArrayList<>();
+
+        produtos.add("Arroz");
+        produtos.add("Feijão");
+        produtos.add("Macarrão");
+        produtos.add("Leite");
+        produtos.add("Café");
+
+  
+        System.out.println("Lista de Compras:");
+        for (String produto : produtos) {
+            System.out.println(produto);
+        }
+
+        
+        System.out.println("Quantidade total de produtos: " + produtos.size());
+    }
+    
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+2-
+
+import java.util.ArrayList;
+
+public class JavaApplication21 {
+
+  
+    public static void main(String[] args) {
+        
+        
+        ArrayList<Double> notas = new ArrayList<>();
+
+        
+        notas.add(8.5);
+        notas.add(7.0);
+        notas.add(6.5);
+        notas.add(9.0);
+
+        
+        double soma = 0;
+
+        for (double nota : notas) {
+            soma += nota;
+        }
+
+        double media = soma / notas.size();
+
+        
+        System.out.println("Média da turma: " + media);
+
+        
+        if (media >= 7) {
+            System.out.println("A turma ficou com média maior ou igual a 7.");
+        } else {
+            System.out.println("A turma ficou com média menor que 7.");
+        }
+    }
+    
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+3-
+
+import java.util.HashSet;
+public class JavaApplication22 {
+
+   
+    public static void main(String[] args) {
+      HashSet<String> alunos = new HashSet<>();
+
+ 
+        alunos.add("Ana");
+        alunos.add("Yago");
+        alunos.add("Ana");
+        alunos.add("João");
+        alunos.add("Yago");
+        alunos.add("Pedro");
+
+        
+        System.out.println("Lista de alunos presentes:");
+        for (String aluno : alunos) {
+            System.out.println(aluno);
+        }
+
+      
+        System.out.println("\nQuantidade de alunos presentes: " + alunos.size());
+    }
+    
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+4-
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class JavaApplication23 {
+
+  
+    public static void main(String[] args) {
+        HashMap<Integer, String> alunos = new HashMap<>();
+
+        
+        alunos.put(101, "Ana");
+        alunos.put(102, "Julia");
+        alunos.put(103, "Marina");
+        alunos.put(104, "Yago");
+
+        
+        System.out.println("Lista de alunos cadastrados:");
+        for (Map.Entry<Integer, String> aluno : alunos.entrySet()) {
+            System.out.println(
+                "Matrícula: " + aluno.getKey() +
+                " | Nome: " + aluno.getValue()
+            );
+        }
+
+       
+        int matriculaBusca = 103;
+
+        if (alunos.containsKey(matriculaBusca)) {
+            System.out.println("\nAluno encontrado:");
+            System.out.println("Matrícula: " + matriculaBusca +
+                               " | Nome: " + alunos.get(matriculaBusca));
+        } else {
+            System.out.println("\nAluno não encontrado.");
+        }
+
+       
+        int matriculaRemover = 102;
+
+        if (alunos.containsKey(matriculaRemover)) {
+            alunos.remove(matriculaRemover);
+            System.out.println("\nAluno removido com sucesso!");
+        } else {
+            System.out.println("\nMatrícula não encontrada.");
+        }
+
+        
+        System.out.println("\nLista atualizada:");
+        for (Map.Entry<Integer, String> aluno : alunos.entrySet()) {
+            System.out.println(
+                "Matrícula: " + aluno.getKey() +
+                " | Nome: " + aluno.getValue()
+            );
+        }
+    }
+    
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+5-
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class JavaApplication24 {
+
+   
+    public static void main(String[] args) {
+    
+         Queue<String> clientes = new LinkedList<>();
+
+        
+        clientes.add("Ana");
+        clientes.add("Pedro");
+        clientes.add("Marina");
+        clientes.add("Yago");
+        clientes.add("Fernanda");
+
+        
+        System.out.println("Fila inicial:");
+        System.out.println(clientes);
+
+        
+        System.out.println("\nPróximo cliente a ser atendido: "
+                + clientes.peek());
+
+        
+        System.out.println("\nAtendendo: " + clientes.poll());
+        System.out.println("Atendendo: " + clientes.poll());
+
+        
+        System.out.println("\nFila atualizada:");
+        System.out.println(clientes);
+    }
+    
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+6-
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SistemaBiblioteca {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Lista de livros
+        ArrayList<Livro> livros = new ArrayList<>();
+
+        int opcao;
+
+        do {
+
+            System.out.println("\n===== SISTEMA BIBLIOTECA =====");
+            System.out.println("1 - Cadastrar livro");
+            System.out.println("2 - Listar livros");
+            System.out.println("3 - Emprestar livro");
+            System.out.println("4 - Devolver livro");
+            System.out.println("0 - Sair");
+
+            System.out.print("Escolha: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcao) {
+
+                case 1:
+
+                    // Cadastro do livro
+                    System.out.print("Código: ");
+                    int codigo = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Título: ");
+                    String titulo = sc.nextLine();
+
+                    System.out.print("Autor: ");
+                    String autor = sc.nextLine();
+
+                    Livro novoLivro =
+                            new Livro(codigo, titulo, autor);
+
+                    livros.add(novoLivro);
+
+                    System.out.println("Livro cadastrado!");
+                    break;
+
+                case 2:
+
+                    // Listar livros
+                    System.out.println("\n=== LISTA DE LIVROS ===");
+
+                    for (Livro l : livros) {
+                        l.exibirLivro();
+                    }
+
+                    break;
+
+                case 3:
+
+                    // Emprestar livro
+                    System.out.print("Digite o código do livro: ");
+                    int codEmprestimo = sc.nextInt();
+
+                    boolean encontrado = false;
+
+                    for (Livro l : livros) {
+
+                        if (l.codigo == codEmprestimo) {
+
+                            encontrado = true;
+
+                            if (l.disponivel) {
+
+                                l.disponivel = false;
+
+                                System.out.println("Livro emprestado!");
+                            } else {
+
+                                System.out.println("Livro indisponível.");
+                            }
+                        }
+                    }
+
+                    if (!encontrado) {
+
+                        System.out.println("Livro não encontrado.");
+                    }
+
+                    break;
+
+                case 4:
+
+                    // Devolver livro
+                    System.out.print("Digite o código do livro: ");
+                    int codDevolucao = sc.nextInt();
+
+                    boolean achou = false;
+
+                    for (Livro l : livros) {
+
+                        if (l.codigo == codDevolucao) {
+
+                            achou = true;
+
+                            l.disponivel = true;
+
+                            System.out.println("Livro devolvido!");
+                        }
+                    }
+
+                    if (!achou) {
+
+                        System.out.println("Livro não encontrado.");
+                    }
+
+                    break;
+
+                case 0:
+
+                    System.out.println("Sistema encerrado.");
+                    break;
+
+                default:
+
+                    System.out.println("Opção inválida.");
+            }
+
+        } while (opcao != 0);
+
+        sc.close();
+    }
+}
+
+// Classe Livro
+class Livro {
+
+    int codigo;
+    String titulo;
+    String autor;
+    boolean disponivel;
+
+    // Construtor
+    public Livro(int codigo, String titulo, String autor) {
+
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponivel = true;
+    }
+
+    // Método para exibir livro
+    public void exibirLivro() {
+
+        System.out.println("Código: " + codigo);
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Disponível: " + disponivel);
+        
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------
+7-
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Pedido {
+    private int numero;
+    private String nomeCliente;
+    private String itemPedido;
+    private double valor;
+    private String status;
+
+    public Pedido(int numero, String nomeCliente, String itemPedido, double valor) {
+        this.numero = numero;
+        this.nomeCliente = nomeCliente;
+        this.itemPedido = itemPedido;
+        this.valor = valor;
+        this.status = "PENDENTE";
+    }
+
+    public int getNumero() { return numero; }
+    public String getNomeCliente() { return nomeCliente; }
+    public String getItemPedido() { return itemPedido; }
+    public double getValor() { return valor; }
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
+
+    @Override
+    public String toString() {
+        return "Pedido #" + numero + 
+               " | Cliente: " + nomeCliente + 
+               " | Item: " + itemPedido + 
+               " | Valor: R$ " + String.format("%.2f", valor) + 
+               " | Status: " + status;
+    }
+}
+
+public class JavaApplication26 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        int contadorPedidos = 1;
+
+        int opcao;
+        do {
+            System.out.println("\n MENU LANCHONETE ");
+            System.out.println("1 - Cadastrar pedido");
+            System.out.println("2 - Listar pedidos");
+            System.out.println("3 - Atualizar status de um pedido");
+            System.out.println("4 - Buscar pedido pelo número");
+            System.out.println("5 - Mostrar valor total dos pedidos");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opcao: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Nome do cliente: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Item pedido: ");
+                    String item = scanner.nextLine();
+                    System.out.print("Valor (ex: 15.50): ");
+                    double valor = scanner.nextDouble();
+                    
+                    Pedido novoPedido = new Pedido(contadorPedidos, nome, item, valor);
+                    pedidos.add(novoPedido);
+                    System.out.println("Pedido #" + contadorPedidos + " cadastrado com sucesso!");
+                    contadorPedidos++;
+                    break;
+
+                case 2:
+                    if (pedidos.isEmpty()) {
+                        System.out.println("Nenhum pedido registrado.");
+                    } else {
+                        for (Pedido p : pedidos) {
+                            System.out.println(p);
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Digite o numero do pedido que deseja atualizar: ");
+                    int numAtualizar = scanner.nextInt();
+                    Pedido pedidoEncontrado = buscarPedido(pedidos, numAtualizar);
+
+                    if (pedidoEncontrado != null) {
+                        System.out.println("Status atual: " + pedidoEncontrado.getStatus());
+                        System.out.print("Novo status (1-PENDENTE, 2-PREPARANDO, 3-FINALIZADO): ");
+                        int tipoStatus = scanner.nextInt();
+                        switch (tipoStatus) {
+                            case 1: pedidoEncontrado.setStatus("PENDENTE"); break;
+                            case 2: pedidoEncontrado.setStatus("PREPARANDO"); break;
+                            case 3: pedidoEncontrado.setStatus("FINALIZADO"); break;
+                            default: System.out.println("Opcao invalida. Status nao alterado.");
+                        }
+                        System.out.println("Status atualizado com sucesso!");
+                    } else {
+                        System.out.println("Pedido nao encontrado.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Digite o numero do pedido: ");
+                    int numBuscar = scanner.nextInt();
+                    Pedido pBuscado = buscarPedido(pedidos, numBuscar);
+                    if (pBuscado != null) {
+                        System.out.println(pBuscado);
+                    } else {
+                        System.out.println("Pedido nao encontrado.");
+                    }
+                    break;
+
+                case 5:
+                    double total = 0;
+                    for (Pedido p : pedidos) {
+                        total += p.getValor();
+                    }
+                    System.out.println("Valor total de todos os pedidos: R$ " + String.format("%.2f", total));
+                    break;
+
+                case 0:
+                    System.out.println("Encerrando o sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opcao invalida!");
+            }
+        } while (opcao != 0);
+
+        scanner.close();
+    }
+
+    private static Pedido buscarPedido(ArrayList<Pedido> pedidos, int numero) {
+        for (Pedido p : pedidos) {
+            if (p.getNumero() == numero) {
+                return p;
+            }
+        }
+        return null;
+    }
+}
+
