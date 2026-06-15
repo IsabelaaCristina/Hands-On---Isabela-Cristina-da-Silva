@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+interface Notificacao {
+    void enviar(String mensagem);
+}
+
+
+class NotificacaoEmail implements Notificacao {
+    @Override
+    public void enviar(String mensagem) {
+        System.out.println("Enviando e-mail: " + mensagem);
+    }
+}
+
+
+class NotificacaoSms implements Notificacao {
+    @Override
+    public void enviar(String mensagem) {
+        System.out.println("Enviando SMS: " + mensagem);
+    }
+}
+
+
+class NotificacaoWhatsApp implements Notificacao {
+    @Override
+    public void enviar(String mensagem) {
+        System.out.println("Enviando WhatsApp: " + mensagem);
+    }
+}
+
+
+class ServicoNotificacao {
+    public void notificarCliente(Notificacao notificacao, String mensagem) {
+        notificacao.enviar(mensagem);
+    }
+}
+
+public class SistemaNotificacao {
+    
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Notificacao> notificacoes = new ArrayList<>();
+
+        ServicoNotificacao servico = new ServicoNotificacao();
+
+        int opcao;
+
+        do {
+            System.out.println("MENU DE NOTIFICAÇÕES");
+            System.out.println("1 - E-mail ");
+            System.out.println("2 - SMS ");
+            System.out.println("3 - WhatsApp ");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+
+            opcao = sc.nextInt();
+            sc.nextLine(); 
+
+            if (opcao >= 1 && opcao <= 3) {
+
+                System.out.print("Digite a mensagem: ");
+                String mensagem = sc.nextLine();
+
+                Notificacao notificacao = null;
+
+                switch (opcao) {
+                    case 1:
+                        notificacao = new NotificacaoEmail();
+                        break;
+
+                    case 2:
+                        notificacao = new NotificacaoSms();
+                        break;
+
+                    case 3:
+                        notificacao = new NotificacaoWhatsApp();
+                        break;
+                }
+
+                notificacoes.add(notificacao);
+
+                servico.notificarCliente(notificacao, mensagem);
+            }
+
+        } while (opcao != 0);
+
+        System.out.println("Total de notificações criadas: " + notificacoes.size());
+        System.out.println("Programa encerrado.");
+}
+}
